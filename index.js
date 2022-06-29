@@ -34,7 +34,9 @@ function getRandomName() {
     const randName = randElement(names);
     const name =  `${randAdj}-${randName}`;
 
-
+    // if the name is taken or the name is null
+    // then generate again
+    // else take a different name
     if (takenNames[name] || !name) {
         return getRandomName();
     } else {
@@ -70,13 +72,16 @@ function createImage(idx) {
     const beard = randInt(3);
     // 18,900 combinations
 
+    //Concantenates all the random 
+    // component into a string
+    // '0932423'
     const face = [hair, eyes, mouth, nose, beard].join('');
 
     if (face[takenFaces]) {
         createImage();
     } else {
         const name = getRandomName()
-        console.log(name)
+        console.log(name);
         face[takenFaces] = face;
 
         const final = template
@@ -120,4 +125,4 @@ readdirSync('./out').forEach(f => rmSync(`./out/${f}`));
 do {
     createImage(idx);
     idx--;
-  } while (idx >= 0);
+} while (idx >= 0);
